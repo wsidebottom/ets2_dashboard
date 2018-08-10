@@ -55,8 +55,7 @@ bool Serial::open(const std::string& name, std::string& errmsg)
   }
   
   // Open COM port
-  com_port = CreateFile(name.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL,
-    OPEN_EXISTING, 0, NULL);
+  com_port = CreateFile(name.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
   if (com_port == INVALID_HANDLE_VALUE)
   {
     errmsg = "Can not open COM port";
@@ -72,7 +71,7 @@ bool Serial::open(const std::string& name, std::string& errmsg)
   }
   
   // Set defaults
-  config.BaudRate = CBR_115200;
+  config.BaudRate = 250000;
   config.StopBits = ONESTOPBIT;
   config.Parity =   NOPARITY;
   config.ByteSize = 8;
@@ -87,10 +86,7 @@ bool Serial::open(const std::string& name, std::string& errmsg)
   retval = true;
 
 exit:
-  if (retval == false)
-  {
-    close();
-  }
+  if (retval == false) close();
   return retval;
 }
 
@@ -105,8 +101,7 @@ void Serial::close()
 
 void Serial::write(const unsigned char* data, unsigned length)
 {
-  if (data == 0 || length == 0)
-    return;
+  if (data == 0 || length == 0) return;
 
   if (com_port != INVALID_HANDLE_VALUE)  
   {
@@ -115,7 +110,3 @@ void Serial::write(const unsigned char* data, unsigned length)
     FlushFileBuffers(com_port);
   }
 }
-
-
-
-

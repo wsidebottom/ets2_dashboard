@@ -45,7 +45,6 @@ class Serial
     bool open(const std::string& name, std::string& errmsg);
     void close();
     
-    
     void write(const unsigned char* data, unsigned length);
     
   private:
