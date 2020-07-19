@@ -35,7 +35,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sstream>
 
 #include <scssdk_telemetry.h>
+#include <eurotrucks2/scssdk_eut2.h>
 #include <eurotrucks2/scssdk_telemetry_eut2.h>
+#include <amtrucks/scssdk_ats.h>
+#include <amtrucks/scssdk_telemetry_ats.h>
 
 #include "serial.hpp"
 #include "options.hpp"
@@ -268,7 +271,7 @@ void get_cwd(std::string& str)
 
 SCSAPI_RESULT scs_telemetry_init(const scs_u32_t version, const scs_telemetry_init_params_t *const params)
 {
-	if (version != SCS_TELEMETRY_VERSION_1_00) return SCS_RESULT_unsupported;
+	if (version != SCS_TELEMETRY_VERSION_CURRENT) return SCS_RESULT_unsupported;
 
 	const scs_telemetry_init_params_v100_t *const version_params = static_cast<const scs_telemetry_init_params_v100_t *>(params);
 	game_log = version_params->common.log;

@@ -1,0 +1,1 @@
+D:\Source\ets2_dashboard\source\ets2_plugin\x64\Release\dash_plugin.dll
